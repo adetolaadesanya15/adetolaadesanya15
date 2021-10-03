@@ -1,17 +1,48 @@
-from tkinter import *
-from tkinter.ttk import *
+import random
 
-from time import strftime
+user_wins = 0
+computer_win = 0
 
-root = Tk()
-root.title("Michael's Clock")
+options = ['Rock', 'Paper', 'Scissors']
 
-def time():
-    string = strftime('%H:%M:%S %p')
-    label.config(text=string)
-    label.after(1000, time)
 
-label = Label(root, font=("ds-digital", 80),background = "black", foreground = "cyan")
-label.pack(anchor= 'center')
-time()
-mainloop()
+
+
+
+while True:
+    user_input = input("Enter 'Rock', 'Paper' or 'Scissors' or Enter Q to quit: ")
+    if user_input == 'Q':
+        break
+
+    if user_input not in options:
+        continue
+    random_number = random.randint(0, 2)
+    computer_pick = options[random_number]
+
+    print(f'Computer pick {computer_pick}')
+    if user_input == 'Rock' and computer_pick == 'Scissors':
+        print('User wins!')
+        user_wins += 1
+    elif user_input == 'Paper' and computer_pick == 'Scissors':
+        print('Computer wins')
+        computer_win += 1
+    elif user_input == 'Scissors' and computer_pick == 'Scissors':
+        print('It is a draw')
+    elif user_input == 'Rock' and computer_pick == 'Paper':
+        print('Computer wins')
+        computer_win += 1
+    elif user_input == 'Paper' and computer_pick == 'Paper':
+        print('It is a draw')
+    elif user_input == 'Paper' and computer_pick == 'Rock':
+        print('User wins')
+        user_wins += 1
+    elif user_input == 'Scissors' and computer_pick == 'Paper':
+        print('User wins')
+        user_wins += 1
+    elif user_input == 'Scissors' and computer_pick == 'Rock':
+        print('Computer wins')
+        computer_win += 1
+    elif user_input == 'Rock' and computer_pick == 'Rock':
+        print('It is a draw')
+    else:
+         pass
