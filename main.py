@@ -1,6 +1,14 @@
 import random
 
-lives = 9
+difficulty = input('What difficulty do you choose easy, medium or hard')
+lives = 0
+if difficulty == 'easy':
+    lives += 10
+elif difficulty == 'medium':
+    lives += 6
+else:
+    lives += 3
+
 words = ['scratch', 'Michael', 'bisciut']
 secret_word = random.choice(words)
 clue = list('???????')
@@ -29,3 +37,4 @@ while lives > 0:
         print('Game Over')
     if geuss == secret_word:
         guessed_word_correctly = True
+        break
