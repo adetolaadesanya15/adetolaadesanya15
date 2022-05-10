@@ -1,40 +1,20 @@
-import random
-
-difficulty = input('What difficulty do you choose easy, medium or hard')
-lives = 0
-if difficulty == 'easy':
-    lives += 10
-elif difficulty == 'medium':
-    lives += 6
-else:
-    lives += 3
-
-words = ['scratch', 'Michael', 'bisciut']
-secret_word = random.choice(words)
-clue = list('???????')
-heart_symbol = u'\u2764'
-guessed_word_correctly = False
-
-def update_clue(geussed_letter, secret_word, clue):
-    index = 0
-    while index < len(secret_word):
-        if geussed_letter == secret_word[index]:
-            clue[index] = geussed_letter
-        index = index + 1
-
-while lives > 0:
-    print(clue)
-    print('Lives left: ' + heart_symbol * lives)
-    geuss = input('Guess a letter or the whole word: ')
-    if geuss in secret_word:
-        update_clue(geuss, secret_word, clue)
+from random import randint
+print('Ghost Game')
+feeling_brave = True
+score = 0
+while feeling_brave:
+    ghost_door = randint(1, 3)
+    print('Three doors ahead...')
+    print('A ghost behind one.')
+    print('Which door do you want to open?')
+    door = input('1, 2, or 3?')
+    door_num = int(door)
+    if door_num == ghost_door:
+        print('GHOST!')
+        feeling_brave = False
     else:
-        print('lose a life')
-        lives = lives - 1
-    if guessed_word_correctly:
-        print('You won')
-    if lives == 0:
-        print('Game Over')
-    if geuss == secret_word:
-        guessed_word_correctly = True
-        break
+        print('No Ghost.')
+        print('You entered the next room')
+        score = score + 1
+print('Run away')
+print('Game Over! You scored', score)
